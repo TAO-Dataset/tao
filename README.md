@@ -4,3 +4,13 @@
 
 [Achal Dave](http://www.achaldave.com/), [Tarasha Khurana](http://www.cs.cmu.edu/~tkhurana/), [Pavel Tokmakov](https://pvtokmakov.github.io/home/), [Cordelia Schmid](https://thoth.inrialpes.fr/~schmid/), [Deva Ramanan](http://www.cs.cmu.edu/~deva/)
 
+## Setup
+
+1. Clone this repo
+    ```
+    git clone https://github.com/achalddave/tao
+    ```
+1. Install TAO toolkit:
+    ```
+    pip install -e .
+    ```

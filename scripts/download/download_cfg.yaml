@@ -1,0 +1,17 @@
+TAO_ANNOTATIONS:
+  TRAIN: /data/achald/track_dataset/annotations/scale/4-18/tao-format/train_federated_lvis.json
+  VAL: /data/achald/track_dataset/annotations/scale/4-18/tao-format/validation_federated_lvis.json
+CHECKSUMS:
+  VERIFY: True
+  PATH: /data/achald/track_dataset/annotations/scale/4-18/tao-format/with_test_unfederated/checksums.json
+AVA:
+  MOVIES:
+    # Contains symlinks to /data/all/AVA/data
+    DIR: /scratch/achald/tao/release/ava/ 
+LASOT:
+  DATASET_ROOT: /ssd1/achald/lasot
+  CREATE_SYMLINKS: True
+CHARADES:
+  VIDEOS_DIR: /data/all/Charades/Charades_v1/videos
+BDD:
+  VIDEOS_DIR: /data/achald/track_dataset/bdd/val/videos/val_00/
