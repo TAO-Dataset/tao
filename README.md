@@ -14,3 +14,16 @@
     ```
     pip install -e .
     ```
+
+## Download dataset
+
+1. Download and uncompress the compressed files from here:
+
+    |           | Train | Val | Test |
+    |-----------|-------|-----|------|
+    | Charades  | [videos]() | [videos]() | - |
+    | BDD-100K  | [videos]() | [videos]() | - |
+    | YFCC-100M | [videos]() | [videos]() | - |
+    | LaSOT     | [frames]() | [frames]() | - |
+    | ArgoVerse | [frames]() | [frames]() | - |
+    |-----------|-------|-----|------|
