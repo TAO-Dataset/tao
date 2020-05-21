@@ -38,8 +38,8 @@ We are actively working on simplifying these steps.
     | LaSOT     | [frames](https://drive.google.com/open?id=1L0UUX_H7X1GGNt28v9I-g7UYRU1fHpaR) | [frames](https://drive.google.com/open?id=1UjLW_-0V3niEIyWhKJv0tSxzPaKr8264) | Coming soon |
     | ArgoVerse | [frames](https://drive.google.com/open?id=1jVhCHmaeFXJ6Vzbcn4LR_HqkVvTa2YHN) | [frames](https://drive.google.com/open?id=1iUyNg0XuruCizvcoiYyEUioK6_gThmqv) | Coming soon |
 
-NOTE: The rest of these instructions assume you are downloading the `train`
-split. Simply replace `train` with `val` everywhere to run on `val`.
+    NOTE: The rest of these instructions assume you are downloading the `train`
+    split. Simply replace `train` with `val` everywhere to run on `val`.
 
 1. Uncompress each file in a single directory, which we will refer to as
    `$TAO_DIR`.  The directory should have the following structure:
