@@ -23,7 +23,6 @@ VERSION = '0.1.0'
 # What packages are required for this module to be executed?
 REQUIRED = [
     'script_utils @ git+https://github.com/achalddave/python-script-utils.git@v0.0.1#egg=script_utils',
-    'vid @ git+https://github.com/achalddave/vid.git@v0.0.1#egg=vid',
     'moviepy==0.2', 'scipy', 'natsort', 'tqdm', 'yacs', 'boto3', 'youtube_dl',
     'numba'
     # 'requests', 'maya', 'records',
@@ -33,11 +32,6 @@ REQUIRED = [
 EXTRAS = {
     # 'fancy feature': ['django'],
 }
-
-DEPENDENCY_LINKS = [
-    #'git+https://github.com/achalddave/vid.git#egg=tao_vid-0.0.1',
-    #'git+https://github.com/achalddave/python-script-utils.git@v0.0.1#egg=tao_script_utils',
-]
 
 # The rest you shouldn't have to touch too much :)
 # ------------------------------------------------
@@ -121,7 +115,6 @@ setup(
     # },
     install_requires=REQUIRED,
     extras_require=EXTRAS,
-    dependency_links=DEPENDENCY_LINKS,
     include_package_data=True,
     license='MIT',
     classifiers=[
