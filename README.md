@@ -17,4 +17,4 @@
 
 ## Download dataset
 
-See [download.md](./download.md).
+See [download instructions](./docs/download.md).
