@@ -50,7 +50,7 @@ We are actively working on simplifying these steps.
 1. Extract frames from BDD, Charades, and YFCC-100M.
 
     ```
-    python extract_frames.py $TAO_ROOT --split train
+    python scripts/download/extract_frames.py $TAO_ROOT --split train
     ```
 
     After this, your directory should have the following structure:
@@ -73,7 +73,7 @@ We are actively working on simplifying these steps.
 1. Download and extract frames from AVA:
 
     ```
-    python download_ava.py $TAO_ROOT --split train
+    python scripts/download/download_ava.py $TAO_ROOT --split train
     ```
 
 1. Download and extract frames from HACS:
@@ -81,7 +81,7 @@ We are actively working on simplifying these steps.
     1. Download and extract from YouTube.
 
         ```
-        python download_hacs.py $TAO_ROOT --split train
+        python scripts/download/download_hacs.py $TAO_ROOT --split train
         ```
 
         You can ignore YoutubeDL errors that are printed by this script (e.g.,
@@ -99,7 +99,7 @@ We are actively working on simplifying these steps.
     `download_hacs.py`.
 
         ```
-        python download_hacs.py $TAO_ROOT --split train
+        python scripts/download/download_hacs.py $TAO_ROOT --split train
         ```
 
 1. Finally, you should have the following structure
