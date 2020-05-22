@@ -82,7 +82,7 @@ We are actively working on simplifying these steps.
 
         https://github.com/hangzhaomit/HACS-dataset#request-testing-videos-and-missing-videos-new
 
-    Store these in `$TAO_ROOT/hacs_missing/`
+        Store these in `$TAO_ROOT/hacs_missing/`
 
     1. Extract frames from newly downloaded HACS videos by re-running
     `download_hacs.py`.
