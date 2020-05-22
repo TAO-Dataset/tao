@@ -56,10 +56,18 @@ We are actively working on simplifying these steps.
             └── YFCC100M
     ```
 
+1. Download TAO annotations to $TAO_DIR
+
+    ```
+    wget 'https://github.com/TAO-Dataset/annotations/archive/v1.0.tar.gz'
+    tar xzvf v1.0.tar.gz
+    mv annotations-v1.0 annotations
+    ```
+
 1. Extract frames from BDD, Charades, and YFCC-100M.
 
     ```
-    python extract_frames.py --root $TAO_ROOT --split train
+    python extract_frames.py $TAO_ROOT --split train
     ```
 
     After this, your directory should have the following structure:
@@ -82,7 +90,8 @@ We are actively working on simplifying these steps.
 1. Download and extract frames from AVA and HACS:
 
     ```
-    python download.py --root $TAO_ROOT --split train
+    python download_ava.py $TAO_ROOT --split train
+    python download_hacs.py $TAO_ROOT --split train
     ```
 
 1. Download any HACS videos that were taken down from YouTube from the HACS
@@ -92,14 +101,15 @@ We are actively working on simplifying these steps.
 
    Store these in `$TAO_ROOT/hacs_missing/`
 
-1. Extract frames from HACS videos.
+1. Extract frames from newly downloaded HACS videos by re-running
+   `download_hacs.py`.
 
     ```
-    python extract_missing_hacs_frames.py --root $TAO_ROOT
+    python download_hacs.py $TAO_ROOT --split train
     ```
 
 1. Finally, you should have the following structure
-k
+
     ```
     ├── frames
     │  └── train
