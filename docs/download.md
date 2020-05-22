@@ -70,12 +70,23 @@ We are actively working on simplifying these steps.
             └── YFCC100M
     ```
 
-1. Download and extract frames from AVA and HACS:
+1. Download and extract frames from AVA:
 
     ```
     python download_ava.py $TAO_ROOT --split train
-    python download_hacs.py $TAO_ROOT --split train
     ```
+
+1. Download and extract frames from HACS:
+
+    1. Download and extract from YouTube.
+
+        ```
+        python download_hacs.py $TAO_ROOT --split train
+        ```
+
+        You can ignore YoutubeDL errors that are printed by this script (e.g.,
+        Video not available). At the end, we will collect a list of all the
+        videos that we could not download and handle them in the next step.
 
     1. Download any HACS videos that were taken down from YouTube from the HACS
         website:
