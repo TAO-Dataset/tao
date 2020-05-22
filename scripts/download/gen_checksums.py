@@ -7,6 +7,8 @@ from pathlib import Path
 from tqdm import tqdm
 from script_utils.common import common_setup
 
+from tao.utils import fs
+
 
 def main():
     # Use first line of file docstring as description if it exists.
@@ -34,15 +36,16 @@ def main():
     # videos = videos[:10]
     hashes = {}
     for video in tqdm(videos):
-        frames = (args.frames_dir / video).rglob('*.jpg')
+        frames = fs.glob_ext(args.frames_dir / video, ('.jpg', '.jpeg'))
         hashes[video] = {}
         for i, frame in tqdm(enumerate(frames)):
-            frame_name = str(frame.relative_to(args.frames_dir))
-            if frame_name in labeled_frames[video]:
+            if frame.name in labeled_frames[video]:
                 with open(frame, 'rb') as f:
                     hashes[video][frame.name] = md5(f.read()).hexdigest()
             else:
                 hashes[video][frame.name] = ''
+        if all(x == '' for x in hashes[video].values()):
+            raise ValueError(f'Did not find any labeled frames for {video}')
 
     with open(args.output_json, 'w') as f:
         json.dump(hashes, f)
