@@ -77,19 +77,19 @@ We are actively working on simplifying these steps.
     python download_hacs.py $TAO_ROOT --split train
     ```
 
-1. Download any HACS videos that were taken down from YouTube from the HACS
-    website:
+    1. Download any HACS videos that were taken down from YouTube from the HACS
+        website:
 
-    https://github.com/hangzhaomit/HACS-dataset#request-testing-videos-and-missing-videos-new
+        https://github.com/hangzhaomit/HACS-dataset#request-testing-videos-and-missing-videos-new
 
-   Store these in `$TAO_ROOT/hacs_missing/`
+    Store these in `$TAO_ROOT/hacs_missing/`
 
-1. Extract frames from newly downloaded HACS videos by re-running
-   `download_hacs.py`.
+    1. Extract frames from newly downloaded HACS videos by re-running
+    `download_hacs.py`.
 
-    ```
-    python download_hacs.py $TAO_ROOT --split train
-    ```
+        ```
+        python download_hacs.py $TAO_ROOT --split train
+        ```
 
 1. Finally, you should have the following structure
 
