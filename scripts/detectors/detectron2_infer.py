@@ -119,7 +119,6 @@ if __name__ == "__main__":
 
     # Tasks to pass to infer()
     infer_tasks = []
-    i = 0
     for path in tqdm(all_files,
                      mininterval=1,
                      dynamic_ncols=True,
@@ -128,9 +127,6 @@ if __name__ == "__main__":
         output_pkl = (args.output / relative).with_suffix('.pkl')
         if output_pkl.exists():
             continue
-        if i > 10:
-            break
-        i += 1
         output_pkl.parent.mkdir(exist_ok=True, parents=True)
         infer_tasks.append({'image_path': path, 'output_path': output_pkl})
 
