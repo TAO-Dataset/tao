@@ -64,7 +64,7 @@ def download_ava(root,
         return client.download_file(url, str(path), verbose=False)
 
     videos_dir = root / 'videos'
-    frames_dir = root / 'frames'
+    frames_root = root / 'frames'
     for movie_stem, clips in tqdm(movie_clips.items(),
                                   desc='Processing AVA movies'):
         movie = f"{movie_stem}.{movie_info[movie_stem]['ext']}"
@@ -75,11 +75,11 @@ def download_ava(root,
         for clip in clips:
             name = clip['name']
             output_clip = file_path(videos_dir / f"{name}.mp4")
-            output_frames = dir_path(frames_dir / name)
+            output_frames = dir_path(frames_root / name)
             if are_tao_frames_dumped(output_frames,
                                      checksums[name],
                                      warn=False):
-                logging.debug(f'Skipping downloaded clip: {name}')
+                logging.debug(f'Skipping extracted clip: {name}')
                 continue
             to_process.append((clip, output_clip, output_frames))
 
@@ -121,6 +121,8 @@ def download_ava(root,
             if downloaded_movie_this_run:
                 movie_path.unlink()
 
+        logging.debug(
+            f'AVA: Dumping TAO frames:\n{[x[1:] for x in to_process]}')
         dump_tao_frames([x[1] for x in to_process], [x[2] for x in to_process],
                         workers)
         for clip, clip_path, frame_dir in to_process:
@@ -131,6 +133,10 @@ def download_ava(root,
                     f'script again.')
             remove_non_tao_frames(frame_dir,
                                   set(checksums[clip['name']].keys()))
+            assert are_tao_frames_dumped(frame_dir, checksums[clip['name']]), (
+                f'ERROR: TAO frames were dumped properly for {clip["name"]}, '
+                f'but were deleted by `remove_non_tao_frames`! This is a bug, '
+                f'please report it.')
 
 
 def main():

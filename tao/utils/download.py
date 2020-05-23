@@ -3,7 +3,6 @@ from hashlib import md5
 from multiprocessing import Pool
 from pathlib import Path
 
-from natsort import natsorted
 from tqdm import tqdm
 from tao.utils.video import dump_frames
 
@@ -51,25 +50,42 @@ def dump_tao_frames(videos,
     logging.root.setLevel(_log_level)
 
 
-def are_tao_frames_dumped(frames_dir, checksums, warn=True):
+def missing_mismatched_frames(frames_dir,
+                              checksums,
+                              early_exit=False):
+    missing = []
+    mismatch = []
     for frame, cksum in checksums.items():
         if frame.endswith('.jpeg'):
             frame = frame.replace('.jpeg', '.jpg')
         path = frames_dir / frame
         if not path.exists():
-            if warn:
-                logging.warning(f'Could not find frame at {path}!')
-            return False
+            missing.append(path)
+            if early_exit:
+                break
         if cksum:
             with open(path, 'rb') as f:
                 md5_digest = md5(f.read()).hexdigest()
             if md5_digest != cksum:
-                if warn:
-                    logging.warning(
-                        f'Checksum for {path} did not match! '
-                        f'Expected: {cksum}, saw: {md5_digest}')
-                return False
-    return True
+                # path, seen, expected
+                mismatch.append((path, md5_digest, cksum))
+                if early_exit:
+                    break
+    return missing, mismatch
+
+
+def are_tao_frames_dumped(frames_dir, checksums, warn=True):
+    missing, mismatch = missing_mismatched_frames(frames_dir,
+                                                  checksums,
+                                                  early_exit=True)
+    if warn and missing:
+        logging.warning(f'Could not find frame at {missing[0]}!')
+    if warn and mismatch:
+        path, seen, expected = mismatch[0]
+        logging.warning(
+            f'Checksum for {path} did not match! '
+            f'Expected: {expected}, saw: {seen}')
+    return not mismatch and not missing
 
 
 def remove_non_tao_frames(frames_dir, keep_frames):
