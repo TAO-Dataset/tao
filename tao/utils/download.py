@@ -3,6 +3,7 @@ from hashlib import md5
 from multiprocessing import Pool
 from pathlib import Path
 
+from natsort import natsorted
 from tqdm import tqdm
 from tao.utils.video import dump_frames
 
@@ -52,6 +53,8 @@ def dump_tao_frames(videos,
 
 def are_tao_frames_dumped(frames_dir, checksums, warn=True):
     for frame, cksum in checksums.items():
+        if frame.endswith('.jpeg'):
+            frame = frame.replace('.jpeg', '.jpg')
         path = frames_dir / frame
         if not path.exists():
             if warn:
@@ -70,7 +73,9 @@ def are_tao_frames_dumped(frames_dir, checksums, warn=True):
 
 
 def remove_non_tao_frames(frames_dir, keep_frames):
-    frames = set(keep_frames)
-    for frame in frames_dir.glob('*.jpg'):
-        if frame.name not in frames:
-            frame.unlink()
+    frames = {x.split('.')[0] for x in keep_frames}
+    extracted_frames = list(frames_dir.glob('*.jpg'))
+    to_remove = [x for x in extracted_frames if x.stem not in frames]
+    assert len(to_remove) != len(extracted_frames)
+    for frame in to_remove:
+        frame.unlink()
