@@ -86,11 +86,11 @@ def main():
             remove_non_tao_frames(frame_dir, set(video_checksums.keys()))
             # Compare checksums for frames
             assert are_tao_frames_dumped(frame_dir, video_checksums), (
-                f'Not all TAO frames for {video} were extracted.')
+                f'Not all TAO frames for {video["name"]} were extracted.')
 
         logging.info(
             f'{dataset}: Removing non-TAO frames, verifying extraction')
-        logging.info(f'Successfully extracted {dataset}!')
+        logging.info(f'{dataset}: Successfully extracted!')
 
 
 if __name__ == "__main__":
