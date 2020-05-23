@@ -44,7 +44,9 @@ In all the examples below, let -
 - `$RESULTS` be the `/path/to/results.json`
 - `$OUTPUT_DIR` be the `/path/to/output/logdir`.
 
-Features:
+We demonstrate some features below; for more, take a look at the config
+description in [`./tao/utils/evaluation.py`](`./tao/utils/evaluation.py`).
+
 - Simple evaluation, with logging to an output directory
 
     ```bash
