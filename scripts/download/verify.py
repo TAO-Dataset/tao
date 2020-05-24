@@ -44,8 +44,8 @@ def main():
         for video in tqdm(videos, desc=f'Verifying {dataset}'):
             name = video['name']
             frame_dir = args.root / 'frames' / name
-            if not are_tao_frames_dumped(frame_dir, checksums[name],
-                                         warn=True):
+            if not are_tao_frames_dumped(
+                    frame_dir, checksums[name], warn=True, allow_extra=False):
                 logging.warning(
                     f'Frames for {name} are not extracted properly. '
                     f'Skipping rest of dataset.')

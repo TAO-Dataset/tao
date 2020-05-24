@@ -4,6 +4,7 @@ from multiprocessing import Pool
 from pathlib import Path
 
 from tqdm import tqdm
+
 from tao.utils.video import dump_frames
 
 
@@ -50,14 +51,14 @@ def dump_tao_frames(videos,
     logging.root.setLevel(_log_level)
 
 
-def missing_mismatched_frames(frames_dir,
-                              checksums,
-                              early_exit=False):
+def frame_checksums_diff(frames_dir, checksums, early_exit=False):
     missing = []
     mismatch = []
+
+    checksums = {k.replace('.jpeg', '.jpg'): v for k, v in checksums.items()}
+    extra = [x for x in frames_dir.rglob('.jpg') if x.name not in checksums]
+
     for frame, cksum in checksums.items():
-        if frame.endswith('.jpeg'):
-            frame = frame.replace('.jpeg', '.jpg')
         path = frames_dir / frame
         if not path.exists():
             missing.append(path)
@@ -71,13 +72,17 @@ def missing_mismatched_frames(frames_dir,
                 mismatch.append((path, md5_digest, cksum))
                 if early_exit:
                     break
-    return missing, mismatch
+    return missing, mismatch, extra
 
 
-def are_tao_frames_dumped(frames_dir, checksums, warn=True):
-    missing, mismatch = missing_mismatched_frames(frames_dir,
-                                                  checksums,
-                                                  early_exit=True)
+def are_tao_frames_dumped(frames_dir, checksums, warn=True, allow_extra=True):
+    missing, mismatch, extra = frame_checksums_diff(frames_dir,
+                                                    checksums,
+                                                    early_exit=True)
+    if allow_extra:
+        extra = []
+    if warn and extra:
+        logging.warning(f'Unexpected frame at {extra[0]}!')
     if warn and missing:
         logging.warning(f'Could not find frame at {missing[0]}!')
     if warn and mismatch:
@@ -85,7 +90,7 @@ def are_tao_frames_dumped(frames_dir, checksums, warn=True):
         logging.warning(
             f'Checksum for {path} did not match! '
             f'Expected: {expected}, saw: {seen}')
-    return not mismatch and not missing
+    return not mismatch and not missing and not extra
 
 
 def remove_non_tao_frames(frames_dir, keep_frames):
