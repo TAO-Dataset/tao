@@ -8,3 +8,4 @@ tao/data/s3_cache
 debug/
 _internal_links.yaml
 _pull_internal_changes.py
+__pycache__
