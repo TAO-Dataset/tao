@@ -25,9 +25,10 @@ We are actively working on simplifying these steps.
     split. Simply replace `train` with `val` everywhere to run on `val`.
 
 1. Uncompress each file in a single directory, which we will refer to as
-   `$TAO_DIR`.  The directory should have the following structure:
-
-    ```
+   `$TAO_DIR`.  
+   <details><summary>The directory should have the following structure:</summary><p>
+    
+   ```bash
     ├── frames
     │  └── train
     │     ├── ArgoVerse
@@ -38,6 +39,7 @@ We are actively working on simplifying these steps.
             ├── Charades
             └── YFCC100M
     ```
+    </p></details>
 
 1. Download TAO annotations to $TAO_DIR
 
@@ -52,8 +54,7 @@ We are actively working on simplifying these steps.
     ```
     python scripts/download/extract_frames.py $TAO_ROOT --split train
     ```
-
-    After this, your directory should have the following structure:
+   <details><summary>After this, your directory should have the following structure:</summary><p>
 
     ```
     ├── frames
@@ -69,6 +70,7 @@ We are actively working on simplifying these steps.
             ├── Charades
             └── YFCC100M
     ```
+    </details>
 
 1. Download and extract frames from AVA:
 
@@ -102,7 +104,7 @@ We are actively working on simplifying these steps.
         python scripts/download/download_hacs.py $TAO_ROOT --split train
         ```
 
-1. Finally, you should have the following structure
+1. <details><summary>Finally, you should have the following structure</summary><p>
 
     ```
     ├── frames
@@ -120,3 +122,5 @@ We are actively working on simplifying these steps.
             ├── Charades
             └── YFCC100M
     ```
+    </details>
+    
