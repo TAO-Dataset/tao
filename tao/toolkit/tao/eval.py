@@ -710,7 +710,7 @@ class Params:
         # )
         self.iou_thrs = [0.5]
         self.rec_thrs = np.linspace(
-            0.0, 1.00, np.round((1.00 - 0.0) / 0.01) + 1, endpoint=True
+            0.0, 1.00, int(np.round((1.00 - 0.0) / 0.01) + 1), endpoint=True
         )
         self.max_dets = 300
         self.area_rng = [
