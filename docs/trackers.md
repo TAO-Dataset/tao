@@ -21,17 +21,17 @@
 
 ### Run [SORT](https://github.com/abewley/sort)
 
-    ```
-    python scripts/trackers/sort/track.py \
-        --detections-dir /path/to/detectron2/output \
-        --annotations $TAO_ROOT/annotations/train.json \
-        --output-dir /path/to/sort/output
-    ```
+```
+python scripts/trackers/sort/track.py \
+    --detections-dir /path/to/detectron2/output \
+    --annotations $TAO_ROOT/annotations/train.json \
+    --output-dir /path/to/sort/output
+```
 
 ### Evaluate
 
-    ```
-    python scripts/evaluation/evaluate.py \
-        $TAO_ROOT/annotations/train.json \
-        /path/to/sort/output/results.json
-    ```
+```
+python scripts/evaluation/evaluate.py \
+    $TAO_ROOT/annotations/train.json \
+    /path/to/sort/output/results.json
+```
