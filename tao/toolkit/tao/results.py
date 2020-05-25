@@ -44,6 +44,11 @@ class TaoResults(Tao):
                 "Assuming user provided the results in correct format.")
             result_anns = results
 
+        merge_map = Tao._construct_merge_map(self.dataset)
+        for x in result_anns:
+            if x['category_id'] in merge_map:
+                x['category_id'] = merge_map[x['category_id']]
+
         assert isinstance(result_anns, list), "results is not a list."
 
         self.ensure_unique_track_ids(result_anns)

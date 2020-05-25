@@ -91,12 +91,28 @@ class Tao:
                 type(self.dataset)))
         self._create_index()
 
+    @staticmethod
+    def _construct_merge_map(dataset):
+        merge_map = {}
+        for category in dataset['categories']:
+            if 'merged' in category:
+                for to_merge in category['merged']:
+                    merge_map[to_merge['id']] = category['id']
+        if not merge_map:
+            logging.error('Did not merge any categories.')
+        return merge_map
+
     def _load_json(self, path):
         with open(path, "r") as f:
             return json.load(f)
 
     def _create_index(self):
         self.logger.info("Creating index.")
+
+        self.merge_categories = Tao._construct_merge_map(self.dataset)
+        for x in self.dataset['annotations'] + self.dataset['tracks']:
+            if x['category_id'] in self.merge_categories:
+                x['category_id'] = self.merge_categories[x['category_id']]
 
         self.vids = {x['id']: x for x in self.dataset['videos']}
         self.tracks = {x['id']: x for x in self.dataset['tracks']}
