@@ -25,9 +25,9 @@ We are actively working on simplifying these steps.
     split. Simply replace `train` with `val` everywhere to run on `val`.
 
 1. Uncompress each file in a single directory, which we will refer to as
-   `$TAO_DIR`.  
+   `$TAO_DIR`.
    <details><summary>The directory should have the following structure:</summary><p>
-    
+
    ```bash
     ├── frames
     │  └── train
@@ -123,4 +123,4 @@ We are actively working on simplifying these steps.
             └── YFCC100M
     ```
     </details>
-    
+
