@@ -32,7 +32,7 @@ python scripts/trackers/sort/track.py \
     --workers 8
 ```
 
-    On our machine, the above took about 11 hours to run on the train set.
+On our machine, the above took about 11 hours to run on the train set.
 
 ### Evaluate
 
