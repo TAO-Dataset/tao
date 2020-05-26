@@ -89,7 +89,9 @@ We are actively working on simplifying these steps.
     python scripts/download/download_ava.py $TAO_ROOT --split train
     ```
 
-1. <details><summary>Finally, you should have the following structure</summary><p>
+1. Finally, you can verify that you have downloaded TAO.
+
+   <details><summary>Expected directory structure</summary><p>
 
     ```
     ├── frames
@@ -108,6 +110,12 @@ We are actively working on simplifying these steps.
             └── YFCC100M
     ```
     </details>
+
+    You can run the following command to check that TAO was properly extracted:
+
+    ```
+    python scripts/download/verify.py $TAO_ROOT --split train
+    ```
 
 ## Request video deletion
 
