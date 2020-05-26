@@ -47,46 +47,51 @@ In all the examples below, let -
 We demonstrate some features below; for more, take a look at the config
 description in [`./tao/utils/evaluation.py`](`./tao/utils/evaluation.py`).
 
-- Simple evaluation, with logging to an output directory
+- <details><summary>Simple evaluation, with logging to an output directory</summary><p>
 
     ```bash
     python scripts/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
     ```
+    </p>
 
-- Classification oracle
+- <details><summary>Classification oracle</summary><p>
 
     ```bash
     python scripts/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
         --config-updates ORACLE.TYPE class
     ```
+    </p>
 
-- Track oracle (for linking detections)
+- <details><summary>Track oracle (for linking detections)</summary><p>
 
     ```bash
     python scripts/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
         --config-updates ORACLE.TYPE track
     ```
+    </p>
 
-- Evaluate MOTA
+- <details><summary>Evaluate MOTA</summary><p>
 
     ```bash
     python scripts/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
         --config-updates MOTA.ENABLED True
     ```
+    </p>
 
-- Evaluate at (3D) IoU threshold of 0.9:
+- <details><summary>Evaluate at (3D) IoU threshold of 0.9</summary><p>
 
     ```bash
     python scripts/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
         --config-updates EVAL_IOUS "[0.9]"
     ```
+    </p>
 
-- Evaluate at multiple (3D) IoU thresholds:
+- <details><summary>Evaluate at multiple (3D) IoU thresholds</summary><p>
 
     ```bash
     python scripts/evaluate.py \
@@ -94,19 +99,22 @@ description in [`./tao/utils/evaluation.py`](`./tao/utils/evaluation.py`).
         --config-updates \
             EVAL_IOUS "[0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95]"
     ```
+    </p>
 
-- Category agnostic evaluation
+- <details><summary>Category agnostic evaluation</summary><p>
 
     ```bash
     python scripts/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
         --config-updates CATEGORY_AGNOSTIC True
     ```
+    </p>
 
-- Report evaluation by source dataset
+- <details><summary>Report evaluation by source dataset</summary><p>
 
     ```bash
     python scripts/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
         --config-updates EVAL_BY_DATASET True
     ```
+    </p>
