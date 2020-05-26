@@ -55,7 +55,7 @@ def main():
 
     banner_log("Downloading AVA videos")
     log_and_run([
-        'python', 'download_ava.py',
+        'python', 'scripts/download/download_ava.py',
         str(args.tao_root), '--split', args.split
     ])
 
