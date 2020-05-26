@@ -18,3 +18,11 @@
 ## Download dataset
 
 See [download instructions](./docs/download.md).
+
+## Evaluation
+
+See [evaluation information](./docs/evaluation.md).
+
+## Run baseline trackers
+
+See [tracker instructions](./docs/trackers.md).
