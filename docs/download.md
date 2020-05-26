@@ -24,6 +24,14 @@ We are actively working on simplifying these steps.
     NOTE: The rest of these instructions assume you are downloading the `train`
     split. Simply replace `train` with `val` everywhere to run on `val`.
 
+1. Download HACS videos.
+
+    1. Option 1: Please request a download URL by filling out this form:
+       https://forms.gle/hZD612H5TXDQDozv9 . We will send you the URL within 24
+       hours.
+    1. Alternatively, you can download the videos directly from YouTube by
+       following instructions [here](./download_hacs_alt.md).
+
 1. Uncompress each file in a single directory, which we will refer to as
    `$TAO_DIR`.
    <details><summary>The directory should have the following structure:</summary><p>
@@ -37,6 +45,7 @@ We are actively working on simplifying these steps.
         └── train
             ├── BDD
             ├── Charades
+            ├── HACS
             └── YFCC100M
     ```
     </p></details>
@@ -49,7 +58,7 @@ We are actively working on simplifying these steps.
     mv annotations-v1.0 annotations
     ```
 
-1. Extract frames from BDD, Charades, and YFCC-100M.
+1. Extract frames from BDD, Charades, HACS and YFCC-100M.
 
     ```
     python scripts/download/extract_frames.py $TAO_ROOT --split train
@@ -62,12 +71,14 @@ We are actively working on simplifying these steps.
     │     ├── ArgoVerse
     │     ├── BDD
     │     ├── Charades
+    │     ├── HACS
     │     ├── LaSOT
     │     └── YFCC100M
     └── videos
         └── train
             ├── BDD
             ├── Charades
+            ├── HACS
             └── YFCC100M
     ```
     </details>
@@ -77,32 +88,6 @@ We are actively working on simplifying these steps.
     ```
     python scripts/download/download_ava.py $TAO_ROOT --split train
     ```
-
-1. Download and extract frames from HACS:
-
-    1. Download and extract from YouTube.
-
-        ```
-        python scripts/download/download_hacs.py $TAO_ROOT --split train
-        ```
-
-        You can ignore YoutubeDL errors that are printed by this script (e.g.,
-        Video not available). At the end, we will collect a list of all the
-        videos that we could not download and handle them in the next step.
-
-    1. Download any HACS videos that were taken down from YouTube from the HACS
-        website:
-
-        https://github.com/hangzhaomit/HACS-dataset#request-testing-videos-and-missing-videos-new
-
-        Store these in `$TAO_ROOT/hacs_missing/`
-
-    1. Extract frames from newly downloaded HACS videos by re-running
-    `download_hacs.py`.
-
-        ```
-        python scripts/download/download_hacs.py $TAO_ROOT --split train
-        ```
 
 1. <details><summary>Finally, you should have the following structure</summary><p>
 
