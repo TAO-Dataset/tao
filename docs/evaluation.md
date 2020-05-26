@@ -47,13 +47,12 @@ In all the examples below, let -
 We demonstrate some features below; for more, take a look at the config
 description in [`./tao/utils/evaluation.py`](`./tao/utils/evaluation.py`).
 
-- <details><summary>Simple evaluation, with logging to an output directory</summary><p>
+- Simple evaluation, with logging to an output directory
 
     ```bash
     python scripts/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
     ```
-    </p>
 
 - <details><summary>Classification oracle</summary><p>
 
