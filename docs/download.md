@@ -109,3 +109,9 @@ We are actively working on simplifying these steps.
     ```
     </details>
 
+## Request video deletion
+
+If you would like to request a video be deleted from TAO (e.g., because you are
+featured in the video or you own the rights), please email me at
+achald@cs.cmu.edu.
+
