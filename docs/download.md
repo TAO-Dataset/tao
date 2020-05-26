@@ -24,11 +24,9 @@ We are actively working on simplifying these steps.
     NOTE: The rest of these instructions assume you are downloading the `train`
     split. Simply replace `train` with `val` everywhere to run on `val`.
 
-1. Download HACS videos.
-
-    1. Option 1: Please request a download URL by filling out this form:
-       https://forms.gle/hZD612H5TXDQDozv9 . We will send you the URL within 24
-       hours.
+1. Download HACS videos. Please request a download URL by filling out this form:
+   https://forms.gle/hZD612H5TXDQDozv9 . We will send you the URL within 24
+   hours.
     1. Alternatively, you can download the videos directly from YouTube by
        following instructions [here](./download_hacs_alt.md).
 
