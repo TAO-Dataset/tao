@@ -20,8 +20,8 @@ def main():
                         required=True,
                         choices=['train', 'val', 'test'])
     parser.add_argument('--sources',
-                        default=['HACS', 'BDD', 'Charades', 'YFCC100M'],
-                        choices=['HACS', 'BDD', 'Charades', 'YFCC100M'])
+                        default=['BDD', 'Charades', 'YFCC100M'],
+                        choices=['BDD', 'Charades', 'YFCC100M'])
     parser.add_argument('--workers', default=8, type=int)
 
     args = parser.parse_args()
