@@ -38,14 +38,6 @@ def main():
     with open(checksums_path, 'r') as f:
         checksums = json.load(f)
 
-    # checksums = {}
-    # for image in tao['images']:
-    #     video = image['video']
-    #     if video not in checksums:
-    #         checksums[video] = {}
-    #     name = image['file_name'].split('/')[-1].replace('.jpeg', '.jpg')
-    #     checksums[video][name] = ''
-
     videos_by_dataset = defaultdict(list)
     for video in tao['videos']:
         videos_by_dataset[video['metadata']['dataset']].append(video)
