@@ -53,7 +53,7 @@ We are actively working on simplifying these steps.
 1. Run the following helper command to handle the rest of the download process.
 
     ```bash
-    python scripts/download/download.py $TAO_ROOT --split train
+    python scripts/download/download_helper.py $TAO_ROOT --split train
     ```
 
     This command will do the following:
