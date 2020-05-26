@@ -45,7 +45,7 @@ In all the examples below, let -
 - `$OUTPUT_DIR` be the `/path/to/output/logdir`.
 
 We demonstrate some features below; for more, take a look at the config
-description in [`./tao/utils/evaluation.py`](`./tao/utils/evaluation.py`).
+description in [`./tao/utils/evaluation.py`](/tao/utils/evaluation.py).
 
 - Simple evaluation, with logging to an output directory
 
