@@ -1,10 +1,11 @@
 import argparse
+import urllib.error
 import urllib.request
 from pathlib import Path
 
 import subprocess
 
-ANNOTATIONS_TAR_GZ = 'https://codeload.github.com/TAO-Dataset/annotations/tar.gz/v1.0'
+ANNOTATIONS_TAR_GZ = 'https://github.com/TAO-Dataset/annotations/archive/v1.0.tar.gz'
 
 
 def banner_log(msg):
@@ -37,8 +38,19 @@ def main():
         print(f'Annotations directory already exists; skipping.')
     else:
         annotations_compressed = args.tao_root / 'annotations.tar.gz'
-        banner_log('Downloading annotations')
-        urllib.request.urlretrieve(ANNOTATIONS_TAR_GZ, annotations_compressed)
+        if not annotations_compressed.exists():
+            banner_log('Downloading annotations')
+            try:
+                urllib.request.urlretrieve(ANNOTATIONS_TAR_GZ,
+                                           annotations_compressed)
+            except urllib.error.HTTPError as e:
+                if e.code == 404:
+                    print(f'Unable to download annotations.tar.gz. Please '
+                          f'download it manually from\n'
+                          f'{ANNOTATIONS_TAR_GZ}\n'
+                          f'and save it to {args.tao_root}.')
+                    return
+                raise
         banner_log('Extracting annotations')
         log_and_run([
             'tar', 'xzvf',
