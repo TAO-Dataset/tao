@@ -5,7 +5,9 @@ from pathlib import Path
 
 import subprocess
 
-ANNOTATIONS_TAR_GZ = 'https://github.com/TAO-Dataset/annotations/archive/v1.0.tar.gz'
+# ANNOTATIONS_TAR_GZ = 'https://github.com/TAO-Dataset/annotations/archive/v1.0.tar.gz'
+# Temporary URL while in beta.
+ANNOTATIONS_TAR_GZ = 'https://achal-public.s3.amazonaws.com/release-beta/annotations/annotations.tar.gz'
 
 
 def banner_log(msg):
