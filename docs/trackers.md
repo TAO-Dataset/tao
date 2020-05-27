@@ -1,6 +1,14 @@
 # Running trackers on TAO
 
-## Multi-Object Trackers
+## SORT
+
+Here, we will reproduce a simpler variant of the SORT result presented in TAO.
+Specifically, we will reproduce the following row from Table 13 in our
+supplementary material.
+
+| NMS Thresh | Det / image | Det score | `max_age` | `min_hits` | `min_iou` | Track mAP |
+| ---------- | ----------- | --------- | --------- | ---------- | --------- | --------- |
+| 0.5 | 300 | 0.0005 | 100 | 1 | 0.1 | 11.3 |
 
 ### Run detectors
 
@@ -41,3 +49,5 @@ python scripts/evaluation/evaluate.py \
     $TAO_ROOT/annotations/train.json \
     /path/to/sort/output/train/results.json
 ```
+
+This should report an AP of 11.3.
