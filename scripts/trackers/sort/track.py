@@ -157,7 +157,7 @@ def main():
     parser.add_argument('--min-hits', default=1, type=float)
     parser.add_argument('--min-iou', default=0.1, type=float)
     parser.add_argument('--score-threshold',
-                        default=0.0001,
+                        default=0.0005,
                         help='Float or "none".')
     parser.add_argument('--nms-thresh', type=float, default=-1)
     parser.add_argument('--workers', default=8, type=int)
