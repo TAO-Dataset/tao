@@ -1,6 +1,7 @@
 import argparse
 import json
 import logging
+import urllib.request
 from collections import defaultdict
 from pathlib import Path
 
@@ -11,9 +12,10 @@ from tqdm import tqdm
 from tao.utils.download import (
     are_tao_frames_dumped, dump_tao_frames, remove_non_tao_frames)
 from tao.utils.fs import dir_path, file_path
-from tao.utils.s3 import S3Wrapper
 
 META_DIR = Path(__file__).resolve().parent / 'meta'
+
+AVA_URL = 'https://s3.amazonaws.com/ava-dataset'
 
 
 def close_clip(video):
@@ -35,7 +37,6 @@ def ava_load_meta():
 def download_ava(root,
                  annotations,
                  checksums,
-                 aws_bucket,
                  workers=8,
                  movies_dir=None):
     if movies_dir is None:
@@ -52,16 +53,6 @@ def download_ava(root,
         movie_clips[v['metadata']['movie']].append(v)
 
     movie_info = ava_load_meta()
-
-    # Only construct client if necessary (in case AVA movies are saved locally,
-    # we don't want to create an S3 client).
-    client = None
-
-    def download_movie(url, path):
-        nonlocal client
-        if client is None:
-            client = S3Wrapper(aws_bucket)
-        return client.download_file(url, str(path), verbose=False)
 
     videos_dir = root / 'videos'
     frames_root = root / 'frames'
@@ -96,8 +87,9 @@ def download_ava(root,
                 movie_path = movies_dir / movie
                 if not movie_path.exists():
                     logging.debug(f'Downloading AVA movie: {movie}.')
-                    url = f"{movie_info[movie_stem]['split']}/{movie}"
-                    download_movie(url, movie_path)
+                    url = (
+                        f"{AVA_URL}/{movie_info[movie_stem]['split']}/{movie}")
+                    urllib.request.urlretrieve(url, movie_path)
             movie_vfc = VideoFileClip(str(movie_path))
 
         for clip_info, clip_path, frames_dir in tqdm(to_process,
@@ -165,11 +157,6 @@ def main():
     log_dir.mkdir(exist_ok=True, parents=True)
     common_setup(__file__, log_dir, args)
 
-    logging.getLogger('boto3').setLevel(logging.CRITICAL)
-    logging.getLogger('botocore').setLevel(logging.CRITICAL)
-    logging.getLogger('s3transfer').setLevel(logging.CRITICAL)
-    logging.getLogger('urllib3').setLevel(logging.CRITICAL)
-
     ann_path = args.root / f'annotations/{args.split}.json'
     with open(ann_path, 'r') as f:
         tao = json.load(f)
@@ -189,7 +176,6 @@ def main():
     download_ava(args.root,
                  tao,
                  checksums,
-                 aws_bucket='ava-dataset',
                  workers=args.workers,
                  movies_dir=args.movies_dir)
 
