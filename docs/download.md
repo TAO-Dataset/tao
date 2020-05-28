@@ -15,16 +15,16 @@ We are actively working on simplifying these steps.
 
     |           | Train | Val | Test |
     |-----------|-------|-----|------|
-    | Charades  | [videos](https://drive.google.com/open?id=12dCphuV-ByVvktkuYFjYl_ZJ1ZVonBjy) | [videos](https://drive.google.com/open?id=1cjrxbf-wA8fxJ2AiHZeLmACZrqF4uPKb) | Coming soon |
-    | BDD-100K  | [videos](https://drive.google.com/open?id=191QRs4O11EKHnDoscWws2g8BPiT35yZC) | [videos](https://drive.google.com/open?id=1zpoYCSU4SxIu35tZ1QpfZPpYMu8Kz2o2) | Coming soon |
-    | YFCC-100M | [videos](https://drive.google.com/open?id=1j6hdIIFIBwRUthe2kozdB5QvcoBL_-eS) | [videos](https://drive.google.com/open?id=1Eh81fksBo5YwslblsRYib6-Dmy0KfF2k) | Coming soon |
+    | Charades  | [frames](https://drive.google.com/file/d/1p7X7nZTBA0GinkGikyN4xb0zp3UOEyTY/view?usp=sharing) | Coming soon | Coming soon |
+    | BDD-100K  | [frames](https://drive.google.com/file/d/1p8Ai2QqNqWPQ1A-7U_KaB24mYWXZxMe5/view?usp=sharing) | Coming soon | Coming soon |
+    | YFCC-100M | [frames](https://drive.google.com/file/d/1kstavuoql0C307Ndp4QUaQebrfB7sqgO/view?usp=sharing) | Coming soon | Coming soon |
     | LaSOT     | [frames](https://drive.google.com/open?id=1PVW7PrdAVMbX11pmkLkxst-GJPPQai0m) | [frames](https://drive.google.com/open?id=1efg_CV7TgkAQNQWzLExWYHqiHc_ijtF5) | Coming soon |
     | ArgoVerse | [frames](https://drive.google.com/open?id=1RPKIuOEjnTLxSf8qlarkzeS16G7si7bu) | [frames](https://drive.google.com/open?id=1zwhwDifJ5YW2F42e4PLeJVTvZ8W2dq-Q) | Coming soon |
 
     NOTE: The rest of these instructions assume you are downloading the `train`
     split. Simply replace `train` with `val` everywhere to run on `val`.
 
-1. Download HACS videos. Please request a download URL by filling out this form:
+1. Download HACS and AVA frames. Please request a download URL by filling out this form:
    https://forms.gle/hZD612H5TXDQDozv9 . We will send you the URL within 24
    hours.
     1. Alternatively, you can download the videos directly from YouTube by
