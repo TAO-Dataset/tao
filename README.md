@@ -8,7 +8,7 @@
 
 1. Clone this repo
     ```
-    git clone https://github.com/achalddave/tao
+    git clone https://github.com/TAO-Dataset/tao
     ```
 1. Install TAO toolkit:
     ```
