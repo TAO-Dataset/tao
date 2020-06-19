@@ -12,7 +12,7 @@
     ```
 1. Install TAO toolkit:
     ```
-    pip install -e .
+    pip install git+https://github.com/TAO-Dataset/tao
     ```
 
 ## Download dataset
