@@ -415,7 +415,7 @@ def evaluate(annotations, predictions, cfg, logger=logging.root):
         if l in cfg.AREA_RNG
     ]
     tao_eval.params.area_rng_lbl = cfg.AREA_RNG
-    tao_eval.params.iou_thrs = cfg.EVAL_IOUS
+    tao_eval.params.iou_thrs = np.array(cfg.EVAL_IOUS)
     tao_eval.run()
 
     eval_info = {'tao_eval': tao_eval}
