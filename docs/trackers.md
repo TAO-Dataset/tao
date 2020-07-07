@@ -12,7 +12,7 @@ supplementary material.
 
 ### Run detectors
 
-1. Download and decompress the detection model and config from [here] to
+1. Download and decompress the detection model and config from [https://drive.google.com/file/d/13BdXSQDqK0t-LrF2CrwJtT9lFc48u83H/view?usp=sharing] to
    `$DETECTRON_MODEL`.
 1. Setup and install
    [detectron2](https://github.com/facebookresearch/detectron2)
