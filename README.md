@@ -21,7 +21,7 @@ See [download instructions](./docs/download.md).
 
 ## Evaluation
 
-See [evaluation information](./docs/evaluation.md).
+See [evaluation information](./docs/evaluation.md). Contains information on submitting to the challenge server.
 
 ## Run baseline trackers
 

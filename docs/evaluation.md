@@ -117,3 +117,22 @@ description in [`./tao/utils/evaluation.py`](/tao/utils/evaluation.py).
         --config-updates EVAL_BY_DATASET True
     ```
     </p>
+
+## Evaluation (challenge server)
+
+For local evaluation, evaluate with steps above on the released validation
+set. When submitting test set results to the
+[challenge server](https://motchallenge.net/login/), follow same format for
+json files as mentioned above.
+
+The server requires you to submit train, validation and test set results.
+We request you to submit these three json files for facilitating progress in
+the tracking community. However, if absolutely necessary, submit empty json
+files for train and validation. Create a .zip archive that deflates into the
+following files
+
+```bash
+./TAO_test.json
+./TAO_train.json
+./TAO_val.json
+```
