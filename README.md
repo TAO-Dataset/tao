@@ -26,3 +26,9 @@ See [evaluation information](./docs/evaluation.md). Contains information on subm
 ## Run baseline trackers
 
 See [tracker instructions](./docs/trackers.md).
+
+## Questions?
+
+For questions about TAO usage or the challenge, please use this Google Group: https://groups.google.com/forum/#!forum/tao-dataset/new
+
+For bug reports regarding the toolkit, annotations, or image download, please file an issue in this repository.
