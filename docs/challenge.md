@@ -40,4 +40,4 @@ We will have the following prizes for the winning entries!
 
 ## FAQs
 
-Please see [faqs.md](./docs/faqs.md).
+Please see [faqs.md](./faqs.md).
