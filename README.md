@@ -10,7 +10,7 @@
   [MOTChallenge website](https://motchallenge.net/results/ECCV_2020_TAO_Challenge/)!
   See [here](docs/challenge.md) for more details.
 - \[2020.07.02\]: TAO was accepted to ECCV '20 as a spotlight presentation!
-- \[2020.02.20\]: We will be hosting a workshop and challenge at ECCV'20. See [here](taodataset.org/workshop/) for details.
+- \[2020.02.20\]: We will be hosting a workshop and challenge at ECCV'20. See [here](http://taodataset.org/workshop/) for details.
 
 ## Setup
 
@@ -42,6 +42,10 @@ See [tracker instructions](./docs/trackers.md).
 
 ## Questions?
 
-For questions about TAO usage or the challenge, please use this Google Group: https://groups.google.com/forum/#!forum/tao-dataset/new
+Please see the [faqs](./docs/faqs.md) to check if we've anticipated your
+question. If not, for questions about TAO usage or the challenge, please use
+this Google Group: https://groups.google.com/forum/#!forum/tao-dataset/
 
-For bug reports regarding the toolkit, annotations, or image download, please file an issue in this repository.
+For bug reports regarding the toolkit, annotations, or image download, please
+file an issue in this repository.
+

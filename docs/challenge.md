@@ -34,3 +34,10 @@ We will have the following prizes for the winning entries!
         must be excluded from training. These sequences can be seen from the test
         json. In particular, a number of LaSOT training sequences are present in the TAO
         test set.
+
+- For submission instructions, see [evaluation.md](evaluation.md).
+
+
+## FAQs
+
+Please see [faqs.md](./docs/faqs.md).
