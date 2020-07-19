@@ -13,6 +13,11 @@ LaSOT, and YFCC-100M.
     | LaSOT     | [frames](https://drive.google.com/open?id=1PVW7PrdAVMbX11pmkLkxst-GJPPQai0m) | [frames](https://drive.google.com/open?id=1efg_CV7TgkAQNQWzLExWYHqiHc_ijtF5) | [frames](https://drive.google.com/open?id=105ZSIVu8mAQlim907Rj8hRtOUvKZ6cem) |
     | ArgoVerse | [frames](https://drive.google.com/open?id=1RPKIuOEjnTLxSf8qlarkzeS16G7si7bu) | [frames](https://drive.google.com/open?id=1zwhwDifJ5YW2F42e4PLeJVTvZ8W2dq-Q) | [frames](https://drive.google.com/open?id=1rwPcIzp1NaqSTEDf9jPc4mEw4ysqp5MO) |
 
+    The [train](https://cdn3.vision.in.tum.de/~tao/train.zip), [val](https://cdn3.vision.in.tum.de/~tao/val.zip)
+    and [test](https://cdn3.vision.in.tum.de/~tao/test.zip) splits of the TAO Dataset have been
+    alternatively hosted on the TUM servers. `wget` the data from the given links. This will
+    download all above mentioned source dataset frames together.
+
     NOTE: The rest of these instructions assume you are downloading the `train`
     split. Simply replace `train` with `val` everywhere to run on `val`.
 
