@@ -12,7 +12,7 @@ supplementary material.
 
 ### Run detectors
 
-1. Download and decompress the detection model and config from [here](https://drive.google.com/file/d/13BdXSQDqK0t-LrF2CrwJtT9lFc48u83H/view?usp=sharing) or [here](https://cdn3.vision.in.tum.de/~tao/baselines/detector-r50-fpn-1x-lvis-coco.zip) to
+1. Download and decompress the detection model and config from [here](https://drive.google.com/file/d/13BdXSQDqK0t-LrF2CrwJtT9lFc48u83H/view?usp=sharing) or [here](https://cdn3.vision.in.tum.de/~tao/baselines/detector-r101-fpn-1x-lvis-coco.zip) to
    `$DETECTRON_MODEL`.
 1. Setup and install
    [detectron2](https://github.com/facebookresearch/detectron2)
