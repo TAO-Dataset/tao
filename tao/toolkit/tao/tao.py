@@ -29,7 +29,8 @@ video: {
     "width" : int,
     "height" : int,
     "neg_category_ids": [int],
-    "not_exhaustive_category_ids": [int]
+    "not_exhaustive_category_ids": [int],
+    "metadata": dict,  # Metadata about the video
 }
 track: {
     "id": int,
@@ -39,8 +40,8 @@ track: {
 category: {
     "id": int,
     "name": str,
-    "synset": str,
-    "supercategory": str
+    "synset": str,  # For non-LVIS objects, this is "unknown"
+    ... [other fields copied from LVIS v0.5 and unused]
 }
 annotation: {
     "image_id": int,
