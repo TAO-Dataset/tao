@@ -26,8 +26,11 @@ We will have the following prizes for the winning entries!
   on the TAO test set.
 
 - **Training data**: We do not impose any restrictions on the training data used for
-  submissions, except that the TAO test videos may not be used for training.
-  In particular, we encourage training on the LVIS v0.5 dataset, which provides
+  submissions, except that the TAO test videos may not be used for training in any way.
+  This explicitly precludes, for example, unsupervised training on the TAO test set.
+  However, the TAO validation videos may be used for training in a supervised or 
+  unsupervised manner.
+  We encourage training on the LVIS v0.5 dataset, which provides
   ample detection training data for categories evaluated in TAO.
 
     - **WARNING**: The TAO test set contains sequences from existing datasets, which
