@@ -2,10 +2,10 @@
 
 1. Why does the training set only contain 216 LVIS categories?
 
-    TAO contains a total of 488 LVIS categories. However, not all categories
+    TAO contains a total of 482 LVIS categories. However, not all categories
     are present in the train, val, and test sets. Instead, we encourage researchers to
     train detectors on the LVIS v0.5 dataset, which contains a superset of
-    the 488 categories, and trackers on existing single-object tracking datasets.
+    the 482 categories, and trackers on existing single-object tracking datasets.
     TAO is primarily a benchmark dataset, but we provide a small set of training videos
     for tuning trackers.
 
