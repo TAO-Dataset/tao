@@ -50,14 +50,14 @@ description in [`./tao/utils/evaluation.py`](/tao/utils/evaluation.py).
 - Simple evaluation, with logging to an output directory
 
     ```bash
-    python scripts/evaluate.py \
+    python scripts/evaluation/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
     ```
 
 - <details><summary>Classification oracle</summary><p>
 
     ```bash
-    python scripts/evaluate.py \
+    python scripts/evaluation/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
         --config-updates ORACLE.TYPE class
     ```
@@ -66,7 +66,7 @@ description in [`./tao/utils/evaluation.py`](/tao/utils/evaluation.py).
 - <details><summary>Track oracle (for linking detections)</summary><p>
 
     ```bash
-    python scripts/evaluate.py \
+    python scripts/evaluation/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
         --config-updates ORACLE.TYPE track
     ```
@@ -75,7 +75,7 @@ description in [`./tao/utils/evaluation.py`](/tao/utils/evaluation.py).
 - <details><summary>Evaluate MOTA</summary><p>
 
     ```bash
-    python scripts/evaluate.py \
+    python scripts/evaluation/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
         --config-updates MOTA.ENABLED True
     ```
@@ -84,7 +84,7 @@ description in [`./tao/utils/evaluation.py`](/tao/utils/evaluation.py).
 - <details><summary>Evaluate at (3D) IoU threshold of 0.9</summary><p>
 
     ```bash
-    python scripts/evaluate.py \
+    python scripts/evaluation/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
         --config-updates EVAL_IOUS "[0.9]"
     ```
@@ -93,7 +93,7 @@ description in [`./tao/utils/evaluation.py`](/tao/utils/evaluation.py).
 - <details><summary>Evaluate at multiple (3D) IoU thresholds</summary><p>
 
     ```bash
-    python scripts/evaluate.py \
+    python scripts/evaluation/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
         --config-updates \
             EVAL_IOUS "[0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95]"
@@ -103,7 +103,7 @@ description in [`./tao/utils/evaluation.py`](/tao/utils/evaluation.py).
 - <details><summary>Category agnostic evaluation</summary><p>
 
     ```bash
-    python scripts/evaluate.py \
+    python scripts/evaluation/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
         --config-updates CATEGORY_AGNOSTIC True
     ```
@@ -112,7 +112,7 @@ description in [`./tao/utils/evaluation.py`](/tao/utils/evaluation.py).
 - <details><summary>Report evaluation by source dataset</summary><p>
 
     ```bash
-    python scripts/evaluate.py \
+    python scripts/evaluation/evaluate.py \
         $ANNOTATIONS $RESULTS --output-dir $OUTPUT_DIR \
         --config-updates EVAL_BY_DATASET True
     ```
