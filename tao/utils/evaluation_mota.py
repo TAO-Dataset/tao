@@ -113,12 +113,31 @@ def evaluate_mota(tao_eval, cfg, logger=logging.root):
                     continue
             if category in video['not_exhaustive_category_ids']:
                 # Remove false positives.
-                inds = [
-                    i for i, event in enumerate(acc._events)
-                    if event[0] != 'FP'
-                ]
-                acc._indices = [acc._indices[i] for i in inds]
-                acc._events = [acc._events[i] for i in inds]
+                if isinstance(acc._indices, list):  # motmetrics <=v1.1.3
+                    inds = [
+                        i for i, event in enumerate(acc._events)
+                        if event[0] != 'FP'
+                    ]
+                    acc._indices = [acc._indices[i] for i in inds]
+                    acc._events = [acc._events[i] for i in inds]
+                elif isinstance(acc._indices, dict):  # motmetrics v1.2.0
+                    inds = [
+                        i for i, event in enumerate(acc._events['Type'])
+                        if event != 'FP'
+                    ]
+                    acc._indices = {
+                        k: [v[i] for i in inds]
+                        for k, v in acc._indices.items()
+                    }
+                    acc._events = {
+                        k: [v[i] for i in inds]
+                        for k, v in acc._events.items()
+                    }
+                else:
+                    raise ValueError(
+                        "Unknown _indices format in motmetrics. Please file "
+                        "an issue on the TAO repository, with your "
+                        "motmetrics version.")
                 acc.cached_events_df = (
                     mm.MOTAccumulator.new_event_dataframe_with_data(
                         acc._indices, acc._events))
