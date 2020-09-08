@@ -24,7 +24,7 @@ VERSION = '0.1.0'
 REQUIRED = [
     'script_utils @ git+https://github.com/achalddave/python-script-utils.git@v0.0.2#egg=script_utils',
     'moviepy~=0.2', 'scipy', 'natsort', 'tqdm', 'yacs', 'boto3', 'youtube_dl',
-    'numba'
+    'numba', 'motmetrics'
     # 'requests', 'maya', 'records',
 ]
 
