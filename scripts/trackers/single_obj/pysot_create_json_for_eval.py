@@ -14,32 +14,15 @@ from tao.toolkit.tao import Tao
 from tao.utils import fs
 
 
-def main():
-    # Use first line of file docstring as description if it exists.
-    parser = argparse.ArgumentParser(
-        description=__doc__.split('\n')[0] if __doc__ else '',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('--annotations', type=Path, required=True)
-    # We need the frames dir because the pickles contain boxes into the ordered
-    # list frames.
-    parser.add_argument('--frames-dir', type=Path, required=True)
-    parser.add_argument('--pickle-dir', type=Path, nargs='+', required=True)
-    parser.add_argument('--oracle-category', action='store_true')
-    parser.add_argument('--output-dir',
-                        type=Path,
-                        required=True)
-
-    args = parser.parse_args()
-    args.output_dir.mkdir(exist_ok=True, parents=True)
-    common_setup(__file__, args.output_dir, args)
-
-    tao = Tao(args.annotations)
+def create_json(pickle_dir, tao, frames_dir, output_dir, oracle_category):
+    if not isinstance(pickle_dir, (list, tuple)):
+        pickle_dir = [pickle_dir]
     image_to_id = {x['file_name']: x['id'] for x in tao.imgs.values()}
 
     paths = [
         (root, root / f'{video["name"]}.pkl')
         for video in tao.vids.values()
-        for root in args.pickle_dir
+        for root in pickle_dir
     ]
 
     annotations = []
@@ -51,13 +34,13 @@ def main():
             logging.warn(f'Could not find tracks for video {p}')
             continue
         video_name = str(p.relative_to(root)).split('.pkl')[0]
-        frames_dir = args.frames_dir / video_name
+        video_frames_dir = frames_dir / video_name
         frames = [
-            str(x.relative_to(args.frames_dir))
-            for x in natsorted(fs.glob_ext(frames_dir, fs.IMG_EXTENSIONS))
+            str(x.relative_to(frames_dir))
+            for x in natsorted(fs.glob_ext(video_frames_dir, fs.IMG_EXTENSIONS))
         ]
         if not frames:
-            raise ValueError(f'Found no frames at {frames_dir}')
+            raise ValueError(f'Found no frames at {video_frames_dir}')
         frame_indices = {x: i for i, x in enumerate(frames)}
         with open(p, 'rb') as f:
             # Map object_id to {'boxes': np.array}
@@ -90,14 +73,38 @@ def main():
                     'bbox': [x0, y0, w, h],
                     'video_id': tao.imgs[image_to_id[frame]]['video_id'],
                     'category_id': (tao.tracks[object_id]['category_id']
-                                    if args.oracle_category else 1),
+                                    if oracle_category else 1),
                     'score': score,
                     # Numpy -> python boolean for serialization
                     '_single_object_init': bool(is_init)
                 })
 
-    with open(args.output_dir / 'results.json', 'w') as f:
+    with open(output_dir / 'results.json', 'w') as f:
         json.dump(annotations, f)
+
+
+def main():
+    # Use first line of file docstring as description if it exists.
+    parser = argparse.ArgumentParser(
+        description=__doc__.split('\n')[0] if __doc__ else '',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument('--annotations', type=Path, required=True)
+    # We need the frames dir because the pickles contain boxes into the ordered
+    # list frames.
+    parser.add_argument('--frames-dir', type=Path, required=True)
+    parser.add_argument('--pickle-dir', type=Path, nargs='+', required=True)
+    parser.add_argument('--oracle-category', action='store_true')
+    parser.add_argument('--output-dir',
+                        type=Path,
+                        required=True)
+
+    args = parser.parse_args()
+    args.output_dir.mkdir(exist_ok=True, parents=True)
+    common_setup(__file__, args.output_dir, args)
+
+    tao = Tao(args.annotations)
+    create_json(args.pickle_dir, tao, args.frames_dir, args.output_dir,
+                args.oracle_category)
 
 
 if __name__ == "__main__":
