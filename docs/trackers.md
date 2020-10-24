@@ -80,32 +80,42 @@ zoo](https://github.com/STVIR/pysot/blob/052b9678a7ed336752f74dc6af31cc00eb00455
 
 ### Run tracker
 
+1. Run single-object tracker using the first frame of a track as the init:
+
 ```
 python scripts/trackers/single_obj/pysot_trackers.py \
         --annotations ${TAO_ROOT}/annotations/train.json \
         --frames-dir ${TAO_ROOT}/train/ \
-        --output-dir /path/to/output \
+        --output-dir /path/to/pysot/output \
         --config-file /path/to/pysot/repo/experiments/siamrpn_r50_l234_dwxcorr/config.yaml \
         --model-path /path/to/pysot/model/siamrpn_r50_l234_dwxcorr_model.pth \
         --gpus 0 1 2 3 \
         --tasks-per-gpu 2
 ```
 
-### Run tracker with "biggest" init strategy
-
-To run a single object tracker using the "biggest" init, as in Table 5 of [our
-paper](https://arxiv.org/pdf/2005.10356.pdf), you can add the `--init biggest`
-flag, as shown below:
+2. Run tracker with "biggest" init strategy, as in Table 5 of [our
+   paper](https://arxiv.org/pdf/2005.10356.pdf). To do this, you can add the
+   `--init biggest` flag, as shown below:
 
 ```
 python scripts/trackers/single_obj/pysot_trackers.py \
         --annotations ${TAO_ROOT}/annotations/train.json \
-        --frames-dir ${TAO_ROOT}/train/ \
-        --output-dir /path/to/output \
+        --frames-dir ${TAO_ROOT}/ \
+        --output-dir /path/to/pysot/output \
         --config-file /path/to/pysot/repo/experiments/siamrpn_r50_l234_dwxcorr/config.yaml \
         --model-path /path/to/pysot/model/siamrpn_r50_l234_dwxcorr_model.pth \
-        --init biggest \
         --gpus 0 1 2 3 \
-        --tasks-per-gpu 2
+        --tasks-per-gpu 2 \
+        --init biggest
 ```
+
+### Evaluate
+
+```
+python scripts/evaluation/evaluate.py \
+    $TAO_ROOT/annotations/train.json \
+    /path/to/pysot/output/train/results.json
+```
+
+This should produce an AP of 29.7.
 
