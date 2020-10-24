@@ -10,3 +10,4 @@ _internal_links.yaml
 _pull_internal_changes.py
 __pycache__
 .venv
+data/detectron_datasets
