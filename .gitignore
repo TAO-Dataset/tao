@@ -1,4 +1,4 @@
-venv
+venv*
 tao.egg-info
 .ipynb_checkpoints
 cache
@@ -9,3 +9,4 @@ debug/
 _internal_links.yaml
 _pull_internal_changes.py
 __pycache__
+.venv
