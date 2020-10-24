@@ -3,6 +3,7 @@ import logging
 import pickle
 import os
 import subprocess
+import sys
 from collections import defaultdict
 from pathlib import Path
 
@@ -13,24 +14,28 @@ from script_utils.common import common_setup
 from tqdm import tqdm
 
 from tao.toolkit.tao import Tao
-from tao.trackers.sot.pysot import PysotTracker
-from tao.trackers.sot.pytracking import PytrackingTracker
-from tao.trackers.sot.staple import StapleTracker
-from tao.trackers.sot.srdcf import SrdcfTracker
 from tao.utils.parallel.fixed_gpu_pool import FixedGpuPool
 from tao.utils import fs
 from tao.utils import misc
+
+# Add current directory to path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from pysot_create_json_for_eval import create_json
 
 
 def init_tracker(args, context):
     os.environ['CUDA_VISIBLE_DEVICES'] = str(context['gpu'])
     if args['tracker_type'] == 'pysot':
+        from tao.trackers.sot.pysot import PysotTracker
         context['tracker'] = PysotTracker(**args['tracker_init'])
     elif args['tracker_type'] == 'pytrack':
+        from tao.trackers.sot.pytracking import PytrackingTracker
         context['tracker'] = PytrackingTracker(**args['tracker_init'])
     elif args['tracker_type'] == 'staple':
+        from tao.trackers.sot.staple import StapleTracker
         context['tracker'] = StapleTracker(**args['tracker_init'])
     elif args['tracker_type'] == 'srdcf':
+        from tao.trackers.sot.srdcf import SrdcfTracker
         context['tracker'] = SrdcfTracker(**args['tracker_init'])
 
 
@@ -173,11 +178,13 @@ def main():
 
     # List of kwargs passed to track_video().
     track_video_tasks = []
+    pickle_output_dir = args.output_dir / "pickles"
+    pickle_output_dir.mkdir(exist_ok=True, parents=True)
     for video_id, tracks in tqdm(video_tracks.items(),
                                  desc='Collecting tasks'):
         video_name = tao.vids[video_id]['name']
         frames_dir = args.frames_dir / video_name
-        output = (args.output_dir / video_name).with_suffix('.pkl')
+        output = (pickle_output_dir / video_name).with_suffix('.pkl')
         if output.exists():
             logging.info(f'{output} already exists, skipping.')
             continue
@@ -236,32 +243,38 @@ def main():
     elif args.tracker in ('staple', 'srdcf'):
         tracker_init = {}
 
-    if not track_video_tasks:
-        logging.warning('No tasks found!')
-        return
-
-    gpus = gpus[:len(track_video_tasks)]
-    print(gpus)
-    if len(gpus) == 1:
-        context = {'gpu': gpus[0]}
-        init_tracker(
-            {
-                'tracker_init': tracker_init,
-                'tracker_type': args.tracker
-            }, context)
-        for task in tqdm(track_video_tasks):
-            task['show_progress'] = True
-            track_video_helper(task, context)
+    if track_video_tasks:
+        gpus = gpus[:len(track_video_tasks)]
+        print(gpus)
+        if len(gpus) == 1:
+            context = {'gpu': gpus[0]}
+            init_tracker(
+                {
+                    'tracker_init': tracker_init,
+                    'tracker_type': args.tracker
+                }, context)
+            for task in tqdm(track_video_tasks):
+                task['show_progress'] = True
+                track_video_helper(task, context)
+        else:
+            pool = FixedGpuPool(gpus,
+                                initializer=init_tracker,
+                                initargs={
+                                    'tracker_init': tracker_init,
+                                    'tracker_type': args.tracker
+                                })
+            list(
+                tqdm(pool.imap_unordered(track_video_helper,
+                                         track_video_tasks),
+                     total=len(track_video_tasks)))
     else:
-        pool = FixedGpuPool(gpus,
-                            initializer=init_tracker,
-                            initargs={
-                                'tracker_init': tracker_init,
-                                'tracker_type': args.tracker
-                            })
-        list(
-            tqdm(pool.imap_unordered(track_video_helper, track_video_tasks),
-                 total=len(track_video_tasks)))
+        logging.warning('No tasks found!')
+
+    create_json(pickle_output_dir,
+                tao,
+                args.frames_dir,
+                args.output_dir,
+                oracle_category=True)
 
 
 if __name__ == "__main__":
