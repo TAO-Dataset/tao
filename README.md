@@ -8,7 +8,7 @@
 
 - \[2020.10.25\]: Added [docs](https://github.com/TAO-Dataset/tao/blob/master/docs/trackers.md#single-object-trackers) for running single-object trackers. See [here](https://github.com/TAO-Dataset/tao/issues/23#issuecomment-716068985) for how to add your own SOT tracker!
 - \[2020.07.10\]: The ECCV challenge is now live at the
-  [MOTChallenge website](https://motchallenge.net/results/ECCV_2020_TAO_Challenge/)!
+  [MOTChallenge website](https://motchallenge.net/results/TAO_Challenge/)!
   See [here](docs/challenge.md) for more details.
 - \[2020.07.02\]: TAO was accepted to ECCV '20 as a spotlight presentation!
 - \[2020.02.20\]: We will be hosting a workshop and challenge at ECCV'20. See [here](http://taodataset.org/workshop/) for details.
