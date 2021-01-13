@@ -18,7 +18,7 @@ def main():
     parser.add_argument('root', type=Path)
     parser.add_argument('--split',
                         required=True,
-                        choices=['train', 'val', 'test'])
+                        choices=['train', 'validation'])
 
     args = parser.parse_args()
     log_dir = args.root / 'logs'
