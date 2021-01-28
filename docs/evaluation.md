@@ -136,3 +136,12 @@ following files
 ./TAO_train.json
 ./TAO_val.json
 ```
+
+## More details
+
+### Merged classes
+A few classes from LVIS (v0.5) are merged in TAO, as they are nearly-synonymous.
+As such, methods are given credit for predicting any one of the merged classes.
+These classes are marked in the annotations, with a `merged` key in the `category` dictionary.
+The following code constructs the list of merged classes from the annotations file:
+https://github.com/TAO-Dataset/tao/blob/63d04f3b62bd0656614902206bd5e0d1e801dc26/tao/toolkit/tao/tao.py#L96-L104
