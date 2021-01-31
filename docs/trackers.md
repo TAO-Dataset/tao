@@ -114,8 +114,22 @@ python scripts/trackers/single_obj/pysot_trackers.py \
 ```
 python scripts/evaluation/evaluate.py \
     $TAO_ROOT/annotations/train.json \
-    /path/to/pysot/output/train/results.json
+    /path/to/pysot/output/train/results.json \
+    SINGLE_OBJECT.ENABLED True \
+    THRESHOLD 0.7
 ```
 
-This should produce an AP of 29.7.
+Note that 0.7 is the tuned threshold for the `siamrpn_r50_l234_dwxcorr` model.
+These thresholds are tuned on the training set, as described in Appendix C.2 of our
+paper, with results shown in Table 16.
+Below are the thresholds for a few PySOT models.
+
+| Model | Threshold |
+| ---- | ---- |
+| siamrpn_r50_l234_dwxcorr | 0.7 |
+| siamrpn_r50_l234_dwcorr_lt | 0.9 |
+| siammask_r50_l3 | 0.8 |
+
+
+The above command, for `siamrpn_r50_l234_dwxcorr`, should produce an AP of 31.5.
 
