@@ -5,7 +5,7 @@ from pathlib import Path
 
 import subprocess
 
-ANNOTATIONS_TAR_GZ = 'https://github.com/TAO-Dataset/annotations/archive/v1.1.tar.gz'
+ANNOTATIONS_TAR_GZ = 'https://github.com/TAO-Dataset/annotations/archive/v1.2.tar.gz'
 
 
 def banner_log(msg):
