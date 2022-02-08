@@ -64,7 +64,6 @@ def compute_imagenetvid_iou(dt_track, gt_track, threshold=0.5):
             intersect, union = bb_intersect_union(d, g)
             if intersect > threshold * union:
                 num_matched += 1
-            num_total += 1
 
         if d or g:
             num_total += 1
