@@ -57,7 +57,7 @@ def main():
             str(annotations_compressed), '-C',
             str(args.tao_root)
         ])
-        (args.tao_root / 'annotations-1.1').rename(annotations_dir)
+        (args.tao_root / 'annotations-1.2').rename(annotations_dir)
 
 
 if __name__ == "__main__":
