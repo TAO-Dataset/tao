@@ -6,6 +6,7 @@
 
 ## Latest updates
 
+- \[2024.11.18\]: Updated [downloading docs](https://github.com/TAO-Dataset/tao/blob/master/docs/download.md) to point to HuggingFace copy of the data.
 - \[2020.10.25\]: Added [docs](https://github.com/TAO-Dataset/tao/blob/master/docs/trackers.md#single-object-trackers) for running single-object trackers. See [here](https://github.com/TAO-Dataset/tao/issues/23#issuecomment-716068985) for how to add your own SOT tracker!
 - \[2020.07.10\]: The ECCV challenge is now live at the
   [MOTChallenge website](https://motchallenge.net/results/TAO_Challenge/)!
